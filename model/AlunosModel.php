@@ -3,9 +3,10 @@
 class AlunosModel {
     
     protected $sql;
+    protected $table = 'alunos';
 
     public function todasColunas(){
-        $this->sql = "SELECT * FROM Alunos";
+        $this->sql = "SELECT * FROM $this->table";
     }
     
     /*
@@ -20,7 +21,7 @@ class AlunosModel {
             }
             $stringColunas += $colunas[$i];      
         }
-        $this->sql = "SELECT $stringColunas FROM Alunos";  
+        $this->sql = "SELECT $stringColunas FROM $this->table";  
     }
     
     public function porId($id) {
@@ -47,18 +48,9 @@ class AlunosModel {
     public function executar() {
         include ('config/conectar.php');
 
-        $sql = $this->sql . " FROM ". $this->table;
+        $sql = $this->sql;
         
         $result = $conn->query($sql);
-
-        // if ($result->num_rows > 0) {
-            // output data of each row
-            //while($row = $result->fetch_assoc()) {
-               // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-           // }
-      //  } else {
-       //     echo "0 results";
-     //   }
         
         $conn->close();
         

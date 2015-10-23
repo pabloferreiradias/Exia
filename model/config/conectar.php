@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "exia_teste";
+$dbname = "exia";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
