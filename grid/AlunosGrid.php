@@ -16,7 +16,7 @@ class AlunosGrid extends Grid {
                                  '/st_senha_al/',
                                  '/st_matricula_al/',
                                  '/st_provasliberadas_al/',
-                                 '/fl_status_a/');
+                                 '/fl_status_al/');
     
     public $nomesColunas = array('ID',
                                  'Aluno',

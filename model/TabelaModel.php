@@ -30,7 +30,7 @@ class TabelaModel {
         $this->sql = "SELECT $stringColunas FROM $this->table";
     }
 
-    public function porId($id) {
+    public function getPorId($id) {
         $this->sql .= " WHERE $this->colunaId = $id";
     }
 

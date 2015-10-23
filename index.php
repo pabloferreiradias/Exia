@@ -15,7 +15,8 @@
 
         	$controller = new AlunosController();
 
-        	$alunos = $controller->getTodosAlunos();
+        	$dados = $controller->getAlunoPorTurma(1);
+                $alunos = $controller->porGrid($dados);
 
         	echo ($alunos);
         ?>
