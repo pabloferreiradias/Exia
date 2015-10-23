@@ -17,7 +17,7 @@
 
         	$alunos = $controller->getTodosAlunos();
 
-        	print_r($alunos);
+        	echo ($alunos);
         ?>
     </body>
 </html>

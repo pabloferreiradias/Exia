@@ -23,9 +23,9 @@ class TabelaModel {
         $stringColunas = '';
         for ($i = 0; $i < sizeof($colunas); $i++) {
             if ($i > 0) {
-                $stringColunas += ", ";
+                $stringColunas .= ", ";
             }
-            $stringColunas += $colunas[$i];
+            $stringColunas .= $colunas[$i];
         }
         $this->sql = "SELECT $stringColunas FROM $this->table";
     }
