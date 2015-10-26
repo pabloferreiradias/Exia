@@ -1,7 +1,7 @@
 <?php
 
-include_once("Controller.php");
-include_once("/model/CursosModel.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/controller/Controller.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/model/CursosModel.php");
 //include_once("/grid/CursosGrid.php");
 
 class CursosController extends Controller {

@@ -1,6 +1,6 @@
 <?php
 
-include_once("TabelaModel.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/model/TabelaModel.php");
 
 class CursosModel extends TabelaModel {
 

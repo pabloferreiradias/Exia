@@ -53,11 +53,41 @@ class TabelaModel {
     }
 
     public function executar() {
-        include ('config/conectar.php');
+        include ($_SERVER['DOCUMENT_ROOT'].'/model/config/conectar.php');
         $sql = $this->sql;
         $result = $conn->query($sql);
         $conn->close();
 
+        return $result;
+    }
+    
+    public function inserir($dados) {
+        include ($_SERVER['DOCUMENT_ROOT'].'/model/config/conectar.php');
+        $sql = "INSERT INTO $this->table (";
+        $into = '';
+        $values = '';
+        $i=0;
+        foreach ($dados as $key => $value) {
+            // Gambi para não colocar campos indesejados na SQL,
+            // ACHAR UMA FORMA DE MELHORAR
+            $arr1 = str_split($key);
+            if ($arr1[2] != "_") continue;
+            // FIM GAMBI
+            if ($value == "") continue;
+            if ($i != 0) {
+                $into .= ', ';
+                $values .= ', ';
+            }
+            $into .= $key;
+            $values .= "'".$value."'";
+            $i++;
+        }
+        $sql .= $into.") VALUES (".$values.")";
+        
+        $result = $conn->query($sql);
+
+        $conn->close();
+        
         return $result;
     }
 

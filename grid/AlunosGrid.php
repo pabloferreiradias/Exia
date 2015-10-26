@@ -1,6 +1,6 @@
 <?php
 
-include_once("/grid/Grid.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/grid/Grid.php");
 
 class AlunosGrid extends Grid {
     public $nomesCampos = array('/id_aluno_al/',

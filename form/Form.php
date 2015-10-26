@@ -6,9 +6,13 @@ class Form {
     protected $conteudoForm;
     protected $inicioForm;
     protected $elementos = array();
+    protected $controller;
+    protected $action;
+    protected $nomeForm;
 
-    public function criarForm() {
-        $this->inicioForm = '<form>';
+    public function criarForm() { //controller/AlunosController.php?action=insert
+        $this->nomeForm = $this->controller.'_'.$this->action;
+        $this->inicioForm = '<form method="post" name="'.$this->nomeForm.'" action="/controller/FormController.php?controller='.$this->controller.'&action='.$this->action.'">';
         foreach ($this->elementos as $elemento) {
             $this->conteudoForm .= $this->criarElemento($elemento);
         }

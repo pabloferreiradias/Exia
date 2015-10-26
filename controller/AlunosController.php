@@ -1,10 +1,12 @@
 <?php
 
-include_once("Controller.php");
-include_once("/model/AlunosModel.php");
-include_once("/grid/AlunosGrid.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/controller/Controller.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/model/AlunosModel.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/grid/AlunosGrid.php");
 
 class AlunosController extends Controller {
+    
+    protected $nomeModel = 'AlunosModel';
 
     public function getTodosAlunos() {
         $bancoAlunos = new AlunosModel();

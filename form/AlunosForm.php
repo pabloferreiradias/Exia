@@ -1,15 +1,19 @@
 <?php
 
 
-include_once ("Form.php");
-include_once ("controller/AlunosController.php");
-include_once ("controller/CursosController.php");
-include_once ("controller/TurmasController.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/form/Form.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/controller/AlunosController.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/controller/CursosController.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/controller/TurmasController.php");
 
 class AlunosForm extends Form {
 
     protected $turmas = array();
     protected $cursos = array();
+    
+    protected $controller = 'AlunosController';
+    protected $action;
+
 
     public function __construct() {
         $turmasController = new TurmasController();
@@ -26,6 +30,8 @@ class AlunosForm extends Form {
             $this->cursos[$array['id_curso_cr']] = $array['st_nome_cr'];
         }
         
+        $this->action = 'insert';
+        
         $this->setElementos();
         $this->criarForm();
     }
@@ -41,14 +47,14 @@ class AlunosForm extends Form {
             'element' => 'input',
             'type' => 'text',
             'id' => 'email',
-            'name' => 'email',
+            'name' => 'st_email_al',
             'label' => 'Email:'
         ));
         $this->add(array(
             'element' => 'input',
             'type' => 'password',
             'id' => 'senha',
-            'name' => 'senha',
+            'name' => 'st_senha_al',
             'label' => 'Senha:'
         ));
         $this->add(array(
@@ -62,25 +68,25 @@ class AlunosForm extends Form {
             'element' => 'input',
             'type' => 'hidden',
             'id' => 'id',
-            'name' => 'id',
+            'name' => 'id_aluno_al',
         ));
         $this->add(array(
             'element' => 'input',
             'type' => 'text',
             'id' => 'nome',
-            'name' => 'nome',
+            'name' => 'st_nome_al',
             'label' => 'Nome:'
         ));
         $this->add(array(
             'element' => 'select',
-            'name' => 'turma',
+            'name' => 'id_turma_al',
             'opitions' => $this->turmas,
             'label' => 'Turma: ',
             'id' => 'turma',
         ));
         $this->add(array(
             'element' => 'select',
-            'name' => 'curso',
+            'name' => 'id_curso_al',
             'opitions' => $this->cursos,
             'label' => 'Curso: ',
             'id' => 'curso',
@@ -89,28 +95,28 @@ class AlunosForm extends Form {
             'element' => 'input',
             'type' => 'text',
             'id' => 'telefone',
-            'name' => 'telefone',
+            'name' => 'st_telefone_al',
             'label' => 'Telefone:'
         ));
         $this->add(array(
             'element' => 'input',
             'type' => 'text',
             'id' => 'responsavel',
-            'name' => 'responsavel',
+            'name' => 'st_responsavel_al',
             'label' => 'Responsável:'
         ));
         $this->add(array(
             'element' => 'input',
             'type' => 'text',
             'id' => 'tel_responsavel',
-            'name' => 'tel_responsavel',
+            'name' => 'st_telresponsavel_al',
             'label' => 'Telefone do Responsável:'
         ));
         $this->add(array(
             'element' => 'input',
             'type' => 'date',
             'id' => 'dt_nascimento',
-            'name' => 'dt_nascimento',
+            'name' => 'dt_nascimento_al',
             'label' => 'Data Nascimento:'
         ));      
         $this->add(array(

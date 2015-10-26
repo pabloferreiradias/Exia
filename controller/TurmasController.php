@@ -1,8 +1,8 @@
 <?php
 
-include_once("Controller.php");
-include_once("/model/TurmasModel.php");
-//include_once("/grid/TurmasGrid.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/controller/Controller.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/model/TurmasModel.php");
+//include_once($_SERVER['DOCUMENT_ROOT']."/grid/TurmasGrid.php");
 
 class TurmasController extends Controller {
 
