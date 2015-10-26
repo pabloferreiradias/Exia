@@ -1,6 +1,6 @@
 <?php
 
-include("TabelaModel.php");
+include_once("TabelaModel.php");
 
 class AlunosModel extends TabelaModel {
 

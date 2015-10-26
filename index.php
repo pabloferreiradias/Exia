@@ -2,7 +2,7 @@
     <head>
         <title>Exia - Index</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0, text/html;charset=UTF-8">
 
         <link rel="stylesheet" href="../view/utils/css/bootstrap.min.css">
         <link rel="stylesheet" href="../view/utils/css/bootstrap-theme.min.css">
@@ -11,14 +11,11 @@
     <body>
         <h1>Teste</h1>
         <?php
-        	include ("controller/AlunosController.php");
+        	include_once ("form/AlunosForm.php");
 
-        	$controller = new AlunosController();
+        	$form = new AlunosForm();
 
-        	$dados = $controller->getAlunoPorTurma(1);
-                $alunos = $controller->porGrid($dados);
-
-        	echo ($alunos);
+        	echo ($form);
         ?>
     </body>
 </html>

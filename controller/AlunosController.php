@@ -1,9 +1,10 @@
 <?php
 
-include("/model/AlunosModel.php");
-include("/grid/AlunosGrid.php");
+include_once("Controller.php");
+include_once("/model/AlunosModel.php");
+include_once("/grid/AlunosGrid.php");
 
-class AlunosController {
+class AlunosController extends Controller {
 
     public function getTodosAlunos() {
         $bancoAlunos = new AlunosModel();
