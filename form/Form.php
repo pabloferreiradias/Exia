@@ -12,7 +12,7 @@ class Form {
 
     public function criarForm() { //controller/AlunosController.php?action=insert
         $this->nomeForm = $this->controller.'_'.$this->action;
-        $this->inicioForm = '<form method="post" name="'.$this->nomeForm.'" action="/controller/FormController.php?controller='.$this->controller.'&action='.$this->action.'">';
+        $this->inicioForm = '<form method="post" class="form-horizontal" role="form" name="'.$this->nomeForm.'" id="'.$this->nomeForm.'" action="/controller/FormController.php?controller='.$this->controller.'&action='.$this->action.'">';
         foreach ($this->elementos as $elemento) {
             $this->conteudoForm .= $this->criarElemento($elemento);
         }
@@ -27,12 +27,32 @@ class Form {
         return $this->form;
     }
 
+    public function getDataPorId($id){
+       $controller = new $this->controller;
+       $dados = $controller->getPorId($id);
+       $data = $controller->toJSon($dados);
+
+       return $data;
+    }
+
+    public function addJQuery($data){
+        echo "<script type='text/javascript'>$(document).ready(function(){var data = ".$data."; populateForm('#".$this->nomeForm."', $.parseJSON(data));});</script>";
+    }
+
+    public function popularForm($id){
+        $data = $this->getDataPorId($id);
+        $this->addJQuery($data);
+    }
+
     private function criarElemento($elemento) {
-        $elementoHtml = '';
+        $elementoHtml = '<div class="form-group">';
 
         if (isset($elemento['label'])) {
-            $elementoHtml = '<label for="' . $elemento['id'] . '">' . $elemento['label'] . '</label>';
+            $elementoHtml .= '<label class="control-label col-sm-2" for="' . $elemento['id'] . '">' . $elemento['label'] . '</label>';
         }
+
+        $elementoHtml .= '<div class="col-sm-10">';
+        
         if ($elemento['element'] == 'input') {
             $elementoHtml .= '<input class="form-control" ';
             foreach ($elemento as $key => $value) {
@@ -75,6 +95,8 @@ class Form {
             }
             $elementoHtml .= '</textarea >';
         }
+
+        $elementoHtml .= '</div></div>';
 
         return $elementoHtml;
     }

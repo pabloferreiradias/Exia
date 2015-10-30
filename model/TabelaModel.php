@@ -14,6 +14,10 @@ class TabelaModel {
         return $this->sql;
     }
 
+     public function getColunaId() {
+        return $this->colunaId;
+    }
+
     /*
      * @var $colunas array
      * Ex: ('id', 'nome', 'turma')
@@ -31,7 +35,7 @@ class TabelaModel {
     }
 
     public function getPorId($id) {
-        $this->sql .= " WHERE $this->colunaId = $id";
+        $this->sql .= " WHERE $this->colunaId = ".$id;
     }
 
     /*
@@ -83,6 +87,31 @@ class TabelaModel {
             $i++;
         }
         $sql .= $into.") VALUES (".$values.")";
+        
+        $result = $conn->query($sql);
+
+        $conn->close();
+        
+        return $result;
+    }
+
+//     UPDATE table_name
+// SET column1=value, column2=value2,...
+// WHERE some_column=some_value
+
+    public function editar($dados) {
+        include ($_SERVER['DOCUMENT_ROOT'].'/model/config/conectar.php');
+        $sql = "UPDATE $this->table SET ";
+        $i=0;
+        foreach ($dados as $key => $value) {
+            if ($key == $this->getColunaId()) continue;
+            if ($i != 0) {
+                $sql .= ', ';
+            }
+            $sql .= $key."='".$value."'";
+            $i++;
+        }
+        $sql .= " WHERE ".$this->getColunaId()."=".$dados[$this->getColunaId()];
         
         $result = $conn->query($sql);
 

@@ -6,13 +6,13 @@ include_once ($_SERVER['DOCUMENT_ROOT']."/controller/AlunosController.php");
 include_once ($_SERVER['DOCUMENT_ROOT']."/controller/CursosController.php");
 include_once ($_SERVER['DOCUMENT_ROOT']."/controller/TurmasController.php");
 
-class AlunosForm extends Form {
+class AlunosFormInsert extends Form {
 
     protected $turmas = array();
     protected $cursos = array();
     
     protected $controller = 'AlunosController';
-    protected $action;
+    protected $action = 'insert';
 
 
     public function __construct() {
@@ -22,18 +22,15 @@ class AlunosForm extends Form {
         foreach ($arrayTurmas as $array) {
             $this->turmas[$array['id_turma_tr']] = $array['st_nome_tr'];
         }
-        
         $cursosController = new CursosController();
         $cursos = $cursosController->getTodosCursos();
         $arrayCursos = $cursosController->toArray($cursos);
         foreach ($arrayCursos as $array) {
             $this->cursos[$array['id_curso_cr']] = $array['st_nome_cr'];
         }
-        
-        $this->action = 'insert';
-        
         $this->setElementos();
         $this->criarForm();
+
     }
     
 //    Alunos:
@@ -63,12 +60,6 @@ class AlunosForm extends Form {
             'id' => 'resenha',
             'name' => 'resenha',
             'label' => 'Digite a senha novamente:'
-        ));
-        $this->add(array(
-            'element' => 'input',
-            'type' => 'hidden',
-            'id' => 'id',
-            'name' => 'id_aluno_al',
         ));
         $this->add(array(
             'element' => 'input',
@@ -118,11 +109,17 @@ class AlunosForm extends Form {
             'id' => 'dt_nascimento',
             'name' => 'dt_nascimento_al',
             'label' => 'Data Nascimento:'
+        ));
+        $this->add(array(
+            'element' => 'input',
+            'type' => 'hidden',
+            'id' => 'id',
+            'name' => 'id_aluno_al',
         ));      
         $this->add(array(
             'element' => 'input',
             'type' => 'submit',
-            'value' => 'Enviar',
+            'value' => 'Salvar',
             'class' => 'btn-success'
         ));
     }
